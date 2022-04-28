@@ -39,7 +39,12 @@ session_start();
 
 require "db.php";
 
-	$query = "INSERT INTO train (tname,sp,st,dp,dt,dd,distance) VALUES ('{$_SESSION["tname"]}','{$_SESSION["sp"]}','{$_SESSION["st"]}','{$_SESSION["dp"]}','{$_SESSION["dt"]}','{$_SESSION["dd"]}','{$_SESSION["ds"]}')";
+	$query = "SELECT MAX(trainno) FROM train";
+        $result = mysqli_query($conn, $query);
+        $row = mysqli_fetch_array($result);
+        $tno = $row[0] + 1;
+
+        $query = "INSERT INTO train VALUES ({$tno},'{$_SESSION["tname"]}','{$_SESSION["sp"]}','{$_SESSION["st"]}','{$_SESSION["dp"]}','{$_SESSION["dt"]}','{$_SESSION["dd"]}','{$_SESSION["ds"]}')";
 
         if (mysqli_query($conn, $query)) {
             echo "New Train record created successfully";
@@ -52,9 +57,15 @@ require "db.php";
         $row = mysqli_fetch_array($result);
         $trainno = $row['trainno'];
 
-        for ($i = 1; $i <= $_SESSION["ns"]; $i++) {
-            $query = "INSERT INTO schedule (trainno,sname,arrival_time,departure_time,distance) VALUES ('{$trainno}','{$_POST["stn{$temp}"]}','{$_POST["st{$temp}"]}','{$_POST["dt{$temp}"]}','{$_POST["ds{$temp}"]}')";
+        $query = "SELECT MAX(sch_id) FROM schedule";
+        $result = mysqli_query($conn, $query);
+        $row = mysqli_fetch_array($result);
+        $sch_id = $row[0] + 1;
+
+        for ($i = 1; $i <= $_SESSION["stops"]; $i++) {
+            $query = "INSERT INTO schedule VALUES ({$sch_id},'{$trainno}','{$_POST["stn{$i}"]}','{$_POST["st{$i}"]}','{$_POST["dt{$i}"]}','{$_POST["ds{$i}"]}')";
             $flag = ($conn->query($query));
+            $sch_id++;	
         }
 
         if ($flag === TRUE) {
