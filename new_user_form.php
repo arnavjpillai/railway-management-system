@@ -1,10 +1,22 @@
 <html>
 
-<body style=" background-image: url(userlogin.png);
+<style>
+    a {
+    text-decoration: none;
+    color: #ffd240;
+}
+</style>
+<body style="
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    background-image: url(train4.jpg);
     height: 100%; 
     background-position: center;
     background-repeat: no-repeat;
-    background-size: cover;">
+    background-size: cover;" >
+<div align="center" style="background-color: rgba(0, 0, 0, 0.404);backdrop-filter: blur(5px);max-width: fit-content;margin: auto; padding: 5rem;margin-top: 12rem;color: whitesmoke;">
+
 
     <?php
 
@@ -30,7 +42,7 @@
 
     $conn->close();
     ?>
-
+	</div>
 </body>
 
 </html>
