@@ -41,34 +41,36 @@ background-size: cover;">
 
         require "db.php";
 
-        $query = "INSERT INTO train (tname,sp,st,dp,dt,dd,distance) VALUES ('{$_SESSION["tname"]}','{$_SESSION["sp"]}','{$_SESSION["st"]}','{$_SESSION["dp"]}','{$_SESSION["dt"]}','{$_SESSION["dd"]}','{$_SESSION["ds"]}')";
+        $stations = $_SESSION["stations"];
 
-        if ($conn->query($query) === TRUE) {
-            echo "New Train record created successfully";
-        } else {
-            echo "Error: " . mysqli_error($conn);
-        }
+	for ($i = 0; $i < $_SESSION["stops"]; $i++) {
+		if ($_POST["s1" . $i] > 0) {
+			$query = "INSERT INTO classseats VALUES ('" . $_SESSION["trainno"] . "','" . $_SESSION["st" . $i] . "','" . $_SESSION["st" . ($i + 1)] . "','" . $_SESSION["doj"] . "','AC1','" . $_POST["s1" . $i] . "','" . $_POST["f1" . $i] . "')";
+			
+		}
+		if ($_POST["s2" . $i] > 0) {
+			$query = "INSERT INTO classseats VALUES ('" . $_SESSION["trainno"] . "','" . $_SESSION["st" . $i] . "','" . $_SESSION["st" . ($i + 1)] . "','" . $_SESSION["doj"] . "','AC2','" . $_POST["s2" . $i] . "','" . $_POST["f2" . $i] . "')";
+			
+		}
+		if ($_POST["s3" . $i] > 0) {
+			$query = "INSERT INTO classseats VALUES ('" . $_SESSION["trainno"] . "','" . $_SESSION["st" . $i] . "','" . $_SESSION["st" . ($i + 1)] . "','" . $_SESSION["doj"] . "','AC3','" . $_POST["s3" . $i] . "','" . $_POST["f3" . $i] . "')";
+			
+		}
+		if ($_POST["s4" . $i] > 0) {
+			$query = "INSERT INTO classseats VALUES ('" . $_SESSION["trainno"] . "','" . $_SESSION["st" . $i] . "','" . $_SESSION["st" . ($i + 1)] . "','" . $_SESSION["doj"] . "','CC','" . $_POST["s4" . $i] . "','" . $_POST["f4" . $i] . "')";
+			
+		}
+		if ($_POST["s5" . $i] > 0) {
+			$query = "INSERT INTO classseats VALUES ('" . $_SESSION["trainno"] . "','" . $_SESSION["st" . $i] . "','" . $_SESSION["st" . ($i + 1)] . "','" . $_SESSION["doj"] . "','EC','" . $_POST["s5" . $i] . "','" . $_POST["f5" . $i] . "')";
+			
+		}
+		if ($_POST["s6" . $i] > 0) {
+			$query = "INSERT INTO classseats VALUES ('" . $_SESSION["trainno"] . "','" . $_SESSION["st" . $i] . "','" . $_SESSION["st" . ($i + 1)] . "','" . $_SESSION["doj"] . "','SL','" . $_POST["s6" . $i] . "','" . $_POST["f6" . $i] . "')";
+			
+		}
+	}
 
-        $query = "SELECT trainno FROM train where tname='{$_SESSION["tname"]}' AND sp='{$_SESSION["sp"]}' AND dp='{$_SESSION["dp"]}'";
-        $result = mysqli_query($conn, $query);
-        $row = mysqli_fetch_array($result);
-        $trainno = $row['trainno'];
-
-        $query = "INSERT INTO schedule (trainno,sname,arrival_time,departure_time,distance) VALUES ('{$trainno}','{$_SESSION["sp"]}','{$_SESSION["st"]}','{$_SESSION["st"]}','0')";
-        $flag = ($conn->query($query));
-
-        for ($i = 1; $i <= $_SESSION["ns"]; $i++) {
-            $query = "INSERT INTO schedule (trainno,sname,arrival_time,departure_time,distance) VALUES ('{$trainno}','{$_POST["stn{$temp}"]}','{$_POST["st{$temp}"]}','{$_POST["dt{$temp}"]}','{$_POST["ds{$temp}"]}')";
-            $flag = ($conn->query($query));
-        }
-        $query = "INSERT INTO schedule (trainno,sname,arrival_time,departure_time,distance) VALUES ('{$trainno}','{$_SESSION["dp"]}','{$_SESSION["dt"]}','{$_SESSION["dt"]}','{$_SESSION["ds"]}')";
-        $flag = ($conn->query($query));
-
-        if ($flag === TRUE) {
-            echo "New schedule added successfully";
-        } else {
-            echo "Error: " . mysqli_error($conn);
-        }
+	echo "New seat arrangement added successfully";
 
         echo "<br> <a href=\"http://localhost/railway/admin_login.php\">Go Back to Admin Menu!!!</a> ";
 
