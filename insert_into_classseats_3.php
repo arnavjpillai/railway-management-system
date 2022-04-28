@@ -68,25 +68,25 @@ require "db.php";
 
 		echo "<form action=\"insert_into_classseats_4.php\" method=\"post\">";
 
-		for ($i = 0;$i <= $_SESSION["stops"]; $i++) {
+		for ($i = 0; $i <= $_SESSION["stops"]; $i++) {
 			$_SESSION["st{$i}"] = $stations[$i];
 		}
 
-		for ($i = 0;$i < $_SESSION["stops"]; $i++) {
+		for ($i = 0; $i < $_SESSION["stops"]; $i++) {
 			echo " <tr><td>{$stations[$i]}</td>
-	<td>{$stations[$temp + 1]}</td>
-	<td><input type=\"text\" name=\"s1{$temp}\" value=\"0\" required></td>
-	<td><input type=\"text\" name=\"f1{$temp}\" value=\"0\" required></td>	
-	<td><input type=\"text\" name=\"s2{$temp}\" value=\"0\" required></td>
-	<td><input type=\"text\" name=\"f2{$temp}\" value=\"0\" required></td>
-	<td><input type=\"text\" name=\"s3{$temp}\" value=\"0\" required></td>
-	<td><input type=\"text\" name=\"f3{$temp}\" value=\"0\" required></td>
-	<td><input type=\"text\" name=\"s4{$temp}\" value=\"0\" required></td>
-	<td><input type=\"text\" name=\"f4{$temp}\" value=\"0\" required></td>
-	<td><input type=\"text\" name=\"s5{$temp}\" value=\"0\" required></td>
-	<td><input type=\"text\" name=\"f5{$temp}\" value=\"0\" required></td>
-	<td><input type=\"text\" name=\"s6{$temp}\" value=\"0\" required></td>
-	<td><input type=\"text\" name=\"f6{$temp}\" value=\"0\" required></td>
+	<td>{$stations[$i + 1]}</td>
+	<td><input type=\"text\" name=\"s1{$i}\" value=\"0\" required></td>
+	<td><input type=\"text\" name=\"f1{$i}\" value=\"0\" required></td>	
+	<td><input type=\"text\" name=\"s2{$i}\" value=\"0\" required></td>
+	<td><input type=\"text\" name=\"f2{$i}\" value=\"0\" required></td>
+	<td><input type=\"text\" name=\"s3{$i}\" value=\"0\" required></td>
+	<td><input type=\"text\" name=\"f3{$i}\" value=\"0\" required></td>
+	<td><input type=\"text\" name=\"s4{$i}\" value=\"0\" required></td>
+	<td><input type=\"text\" name=\"f4{$i}\" value=\"0\" required></td>
+	<td><input type=\"text\" name=\"s5{$i}\" value=\"0\" required></td>
+	<td><input type=\"text\" name=\"f5{$i}\" value=\"0\" required></td>
+	<td><input type=\"text\" name=\"s6{$i}\" value=\"0\" required></td>
+	<td><input type=\"text\" name=\"f6{$i}\" value=\"0\" required></td>
 	</tr>";
 		}
 
