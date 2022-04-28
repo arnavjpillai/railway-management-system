@@ -65,7 +65,7 @@ require "db.php";
         for ($i = 1; $i <= $_SESSION["stops"]; $i++) {
             $query = "INSERT INTO schedule VALUES ({$sch_id},'{$trainno}','{$_POST["stn{$i}"]}','{$_POST["st{$i}"]}','{$_POST["dt{$i}"]}','{$_POST["ds{$i}"]}')";
             $flag = ($conn->query($query));
-            $sch_id++;	
+            $sch_id++;
         }
 
         if ($flag === TRUE) {
