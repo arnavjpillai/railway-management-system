@@ -12,13 +12,13 @@
 	{
 		font-family: 'Source Sans Pro', sans-serif;
 		font-weight: 300;
-		color: #777;
+		color: whitesmoke;
 	}
 	
 	strong, b
 	{
 		font-weight: 400;
-		color: #363636;
+		color: #ffffff;
 	}
 
 	h1, h2, h3, h4,h5, h6
@@ -68,7 +68,8 @@
 	
 		table tbody tr:nth-child(2n+2)
 		{
-			background: #f4f4f4;
+			background: #222222;
+			color:whitesmoke
 		}
 		
 		table td
@@ -87,7 +88,7 @@
 		table thead
 		{
 			background: #222222;
-			color: #fff;
+			color: whitesmoke;
 		}
 		
 		table tfoot
